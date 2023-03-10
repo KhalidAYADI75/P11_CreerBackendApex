@@ -23,4 +23,12 @@ public with sharing class BatchCreateTasksForAccsWithoutOrdersTest {
         }
         System.assertEquals(4, [SELECT count() FROM TASK WHERE WhatId IN : accountsId ]);
     }
+    @isTest
+    public static void testExecuteSchedule() {   
+        Test.StartTest();  
+    	BatchCreateTasksForAccountsWithoutOrders.executeSchedule();    
+        Test.StopTest();
+        System.assertEquals(1, [SELECT count() FROM CronTrigger WHERE CronJobDetail.Name = 'Test Batch Schedule']);
+  
+    }
 }

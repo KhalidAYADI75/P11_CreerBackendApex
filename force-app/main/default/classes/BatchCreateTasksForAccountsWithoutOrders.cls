@@ -19,7 +19,11 @@ public with sharing class BatchCreateTasksForAccountsWithoutOrders implements Da
     public static void executeSchedule() {
         BatchCreateTasksForAccountsWithoutOrders BatchSchedule = new BatchCreateTasksForAccountsWithoutOrders();
         String cronExpression = '0 0 1 ? * 2#1 *';
-        System.schedule('Batch Schedule', cronExpression, BatchSchedule);
+        if (Test.isRunningTest()) {
+            System.schedule('Test Batch Schedule', cronExpression, BatchSchedule);
+        } else {
+             System.schedule('Batch Schedule', cronExpression, BatchSchedule);
+        }
     }
  
 }
