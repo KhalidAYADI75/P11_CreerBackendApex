@@ -1,4 +1,4 @@
-# Grille des fonctionnalités à implémenter dans le cadre du projet :
+# Grille des fonctionnalités à implémenter :
 
 ## Besoin métiers :
 Chaque « Order » peut avoir un ou plusieurs produits ou services rattachés.
