@@ -1,9 +1,10 @@
 public with sharing class OrderActiveFieldModification {
     public static List<Account> getAccountsWithoutOrder(List<Order> orderList) {
         List<Id> accountIds = new List<Id>(); 
-        for(integer i=0; i< orderList.size(); i++){
-        	accountIds.add(orderList[i].AccountId); 
+        for (Order odr : orderList) {
+            accountIds.add(odr.AccountId); 
         }
+        
         List<Account> acctsWithoutOrder = [SELECT Id,Active__c FROM Account WHERE (Id NOT IN (SELECT AccountId FROM Order) AND (Id IN : accountIds))];
         return acctsWithoutOrder;
     }
